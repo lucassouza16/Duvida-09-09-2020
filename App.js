@@ -1,9 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Dimensions, StatusBar, View, Text, ScrollView, TouchableOpacity, Animated, } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const { width : initialWidth, height : initialHeight } = Dimensions.get('window');
 
-const Circle = ({ }) => {
+const Circle = ({ orientation }) => {
+
+  const width = orientation == 'portrait' ? initialWidth : initialHeight
+  const height = orientation == 'portrait' ? initialHeight : initialWidth
 
   return(    
     <View style={ [ { flex: 1, } ] }>
@@ -47,7 +50,7 @@ export default function App(){
     return (
     <View style={{ flex: 1}}>
       <StatusBar backgroundColor={'green'} barStyle="light-content" />
-      <Circle /> 
+      <Circle orientation={orientation} /> 
      </View>
      );
   }
@@ -55,7 +58,7 @@ export default function App(){
   return(
     <View style={{ flex: 1 }}>
       <StatusBar backgroundColor={'red'} barStyle="light-content" />
-      <Circle  /> 
+      <Circle orientation={orientation} /> 
     </View>
     );
   }
